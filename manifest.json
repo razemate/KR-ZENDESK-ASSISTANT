@@ -1,0 +1,32 @@
+{
+  "name": "AI Draft Assistant",
+  "author": {
+    "name": "Katusa Research",
+    "email": "support@katusaresearch.com",
+    "url": "https://katusaresearch.com"
+  },
+  "version": "1.0.4",
+  "frameworkVersion": "2.0",
+  "defaultLocale": "en",
+  "private": true,
+  "location": {
+    "support": {
+      "ticket_sidebar": {
+        "url": "assets/iframe.html",
+        "flexible": true
+      }
+    }
+  },
+  "domainWhitelist": [
+    "kr-zendesk-ai-assistant.vercel.app"
+  ],
+  "parameters": [
+    {
+      "name": "api_endpoint",
+      "type": "text",
+      "required": true,
+      "secure": false,
+      "default": "https://kr-zendesk-ai-assistant.vercel.app"
+    }
+  ]
+}

@@ -1,0 +1,8 @@
+{
+  "app": {
+    "name": "AI Assistant",
+    "short_description": "AI-powered draft replies using Gemini",
+    "long_description": "Automatically generates draft replies for tickets using your knowledge base and Google Gemini AI.",
+    "installation_instructions": "Enter your backend API URL in the settings."
+  }
+}

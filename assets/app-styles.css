@@ -1,0 +1,345 @@
+/* Global Reset & Base Styles */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+  font-size: 13px;
+  padding: 12px;
+  margin: 0;
+  box-sizing: border-box;
+  color: #2f3941;
+  background: #fff;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+/* Header / Settings Toggle */
+.settings-toggle {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 12px;
+  background-color: #f8f9f9;
+  border: 1px solid #d8dcde;
+  border-radius: 4px;
+  cursor: pointer;
+  margin-bottom: 12px;
+  transition: background 0.2s, border-color 0.2s;
+}
+
+.settings-toggle:hover {
+  background-color: #f0f3f5;
+  border-color: #c2c8cc;
+}
+
+.toggle-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.app-title {
+  font-weight: 600;
+  font-size: 13px;
+  color: #2f3941;
+}
+
+.gear-icon {
+  color: #68737d;
+  flex-shrink: 0;
+}
+
+.chevron-icon {
+  color: #68737d;
+  transition: transform 0.3s ease;
+  flex-shrink: 0;
+}
+
+.chevron-icon.open {
+  transform: rotate(180deg);
+}
+
+/* Settings Panel */
+.settings-panel {
+  background: #fff;
+  border: 1px solid #d8dcde;
+  border-radius: 4px;
+  padding: 16px;
+  margin-bottom: 15px;
+  box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+}
+
+.panel-section .label {
+  font-weight: 600;
+  margin-bottom: 8px;
+  display: block;
+  font-size: 12px;
+}
+
+.divider {
+  text-align: center;
+  color: #87929d;
+  font-size: 11px;
+  margin: 12px 0;
+  position: relative;
+}
+
+.divider:before,
+.divider:after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 40%;
+  height: 1px;
+  background: #d8dcde;
+}
+
+.divider:before { left: 0; }
+.divider:after { right: 0; }
+
+/* File Drop Zone */
+.file-drop-zone {
+  border: 2px dashed #c2c8cc;
+  border-radius: 4px;
+  padding: 24px 16px;
+  text-align: center;
+  cursor: pointer;
+  background: #fafbfb;
+  transition: all 0.2s;
+  font-size: 12px;
+  color: #68737d;
+}
+
+.file-drop-zone:hover {
+  background: #f0f3f5;
+  border-color: #1f73b7;
+  color: #1f73b7;
+}
+
+/* Main Container */
+.main-container {
+  padding: 0;
+}
+
+/* Ticket Info Display */
+.ticket-info {
+  background: #f0f3f5;
+  border: 1px solid #d8dcde;
+  border-radius: 4px;
+  padding: 10px 12px;
+  margin-bottom: 15px;
+  font-size: 12px;
+}
+
+.info-label {
+  font-weight: 600;
+  color: #68737d;
+  margin-top: 6px;
+}
+
+.info-label:first-child {
+  margin-top: 0;
+}
+
+.info-value {
+  color: #2f3941;
+  margin-bottom: 4px;
+  word-break: break-word;
+}
+
+/* Input Groups */
+.input-group {
+  margin-bottom: 14px;
+}
+
+.input-label {
+  display: block;
+  font-weight: 600;
+  font-size: 12px;
+  margin-bottom: 6px;
+  color: #2f3941;
+}
+
+/* Inputs & Textareas */
+textarea,
+input[type="text"] {
+  width: 100%;
+  padding: 8px 10px;
+  border: 1px solid #d8dcde;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 13px;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  resize: vertical;
+}
+
+textarea:focus,
+input[type="text"]:focus {
+  border-color: #1f73b7;
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(31, 115, 183, 0.15);
+}
+
+textarea {
+  line-height: 1.5;
+}
+
+/* Buttons */
+button {
+  cursor: pointer;
+  font-size: 13px;
+  border-radius: 4px;
+  padding: 9px 16px;
+  font-weight: 500;
+  transition: all 0.2s;
+  border: none;
+  font-family: inherit;
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.btn-primary {
+  background-color: #1f73b7;
+  color: white;
+  border: 1px solid #1f73b7;
+  width: 100%;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #144a75;
+  border-color: #144a75;
+}
+
+.btn-secondary {
+  background-color: white;
+  color: #2f3941;
+  border: 1px solid #d8dcde;
+  width: 100%;
+  margin-top: 8px;
+}
+
+.btn-secondary:hover:not(:disabled) {
+  border-color: #87929d;
+  background-color: #f8f9f9;
+}
+
+.btn-outline {
+  background: white;
+  border: 1px solid #d8dcde;
+  color: #2f3941;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  width: 100%;
+}
+
+.btn-outline:hover:not(:disabled) {
+  background: #f8f9f9;
+  border-color: #87929d;
+}
+
+.btn-success {
+  background-color: #038153;
+  color: white;
+  border: 1px solid #038153;
+  width: 100%;
+}
+
+.btn-success:hover:not(:disabled) {
+  background-color: #03582f;
+  border-color: #03582f;
+}
+
+/* Action Row */
+.action-row {
+  margin-top: 12px;
+}
+
+/* File Name Display */
+.file-name {
+  display: inline-block;
+  font-size: 11px;
+  color: #1f73b7;
+  margin-top: 6px;
+  font-style: italic;
+}
+
+/* Status Text */
+.status-text {
+  font-size: 11px;
+  color: #68737d;
+  margin-top: 8px;
+  min-height: 16px;
+}
+
+/* Loading State */
+.loading-state {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 24px 16px;
+  background: #f8f9f9;
+  border: 1px solid #d8dcde;
+  border-radius: 4px;
+  margin-top: 12px;
+  color: #68737d;
+  font-size: 12px;
+}
+
+.spinner {
+  display: inline-block;
+  width: 16px;
+  height: 16px;
+  border: 2px solid rgba(31, 115, 183, 0.2);
+  border-radius: 50%;
+  border-top-color: #1f73b7;
+  animation: spin 1s ease-in-out infinite;
+}
+
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+
+/* Result Area */
+.result-area {
+  margin-top: 16px;
+}
+
+.result-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+/* Radio Group */
+.radio-group {
+  display: flex;
+  gap: 16px;
+  margin-top: 6px;
+}
+
+.radio-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  cursor: pointer;
+  font-size: 13px;
+  color: #2f3941;
+}
+
+.radio-label input[type="radio"] {
+  cursor: pointer;
+  width: 16px;
+  height: 16px;
+  margin: 0;
+}
+
+.radio-label:hover {
+  color: #1f73b7;
+}

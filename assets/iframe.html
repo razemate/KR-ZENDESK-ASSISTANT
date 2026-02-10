@@ -1,0 +1,125 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>AI Draft Assistant</title>
+  <link href="app-styles.css" rel="stylesheet">
+</head>
+<body>
+  <!-- HEADER / SETTINGS TOGGLE -->
+  <div class="settings-toggle" id="settings-toggle">
+    <div class="toggle-left">
+      <svg class="gear-icon" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <circle cx="12" cy="12" r="3"></circle>
+        <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1 0 2.83 2 2 0 0 1-2.83 0l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-2 2 2 2 0 0 1-2-2v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83 0 2 2 0 0 1 0-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1-2-2 2 2 0 0 1 2-2h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 0-2.83 2 2 0 0 1 2.83 0l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 2-2 2 2 0 0 1 2 2v.09a1.65 1.65 0 0 0 1 1.51h.09a1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 0 2 2 0 0 1 0 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 2 2 2 2 0 0 1-2 2h-.09a1.65 1.65 0 0 0-1.51 1z"></path>
+      </svg>
+      <span class="app-title">Knowledge Base Settings</span>
+    </div>
+    <svg class="chevron-icon" id="settings-chevron" xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+      <polyline points="6 9 12 15 18 9"></polyline>
+    </svg>
+  </div>
+
+  <!-- SETTINGS PANEL (Hidden by default) -->
+  <div id="settings-panel" class="settings-panel" style="display:none;">
+    <div class="panel-section">
+      <div class="label">Add to Knowledge Base</div>
+      
+      <!-- URL Input -->
+      <input type="text" id="kb-url-input" placeholder="Enter URL to scrape..." />
+      <button id="btn-add-url" class="btn-secondary">Add URL</button>
+
+      <div class="divider">OR</div>
+
+      <!-- File Upload -->
+      <div class="file-drop-zone" id="kb-drop-zone">
+        <span>📄 Drag & Drop PDF/Text here or click to browse</span>
+        <input type="file" id="kb-file-input" accept=".pdf,.txt,.doc,.docx" hidden />
+      </div>
+      <div id="kb-upload-status" class="status-text"></div>
+    </div>
+  </div>
+
+  <!-- MAIN UI -->
+  <div class="main-container">
+    
+    <!-- Ticket Info Display -->
+    <div id="ticket-info" class="ticket-info">
+      <div class="info-label">Ticket:</div>
+      <div id="ticket-subject" class="info-value">Loading...</div>
+      <div class="info-label">Customer:</div>
+      <div id="ticket-customer" class="info-value">Loading...</div>
+    </div>
+
+    <!-- Additional Instructions Box -->
+    <div class="input-group">
+      <label class="input-label">Additional Instructions (optional)</label>
+      <textarea id="ai-custom-instruction" 
+                placeholder="e.g., Be more friendly, include refund policy, mention 24-hour support..."
+                rows="3"></textarea>
+    </div>
+
+    <!-- Attachment Button (Context for THIS draft) -->
+    <div class="input-group">
+      <button id="btn-attach-context" class="btn-outline">
+        <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M21.44 11.05l-9.19 9.19a6 6 0 0 1-8.49-8.49l9.19-9.19a4 4 0 0 1 5.66 5.66l-9.2 9.19a2 2 0 0 1-2.83-2.83l8.49-8.48"/>
+        </svg>
+        Attach Reference Document
+      </button>
+      <input type="file" id="context-file-input" accept=".pdf,.txt,.doc,.docx" hidden />
+      <span id="context-file-name" class="file-name"></span>
+    </div>
+
+    <!-- Reply Type Selection -->
+    <div class="input-group">
+      <label class="input-label">Insert draft as:</label>
+      <div class="radio-group">
+        <label class="radio-label">
+          <input type="radio" name="reply-type" value="public" checked>
+          <span>Public Reply</span>
+        </label>
+        <label class="radio-label">
+          <input type="radio" name="reply-type" value="internal">
+          <span>Internal Note</span>
+        </label>
+      </div>
+    </div>
+
+    <!-- Generate Button -->
+    <div class="action-row">
+      <button id="btn-generate" class="btn-primary">
+        🤖 Generate Draft Reply
+      </button>
+    </div>
+
+    <!-- Loading State -->
+    <div id="loading-indicator" class="loading-state" style="display:none;">
+      <div class="spinner"></div>
+      <span>AI is analyzing ticket and generating reply...</span>
+    </div>
+
+    <!-- Result Area -->
+    <div id="result-area" class="result-area" style="display:none;">
+      <label class="input-label">Generated Draft Reply</label>
+      <textarea id="ai-output" rows="12"></textarea>
+      <div class="result-actions">
+        <button id="btn-insert" class="btn-success">
+          ✓ Insert into Ticket Reply
+        </button>
+        <button id="btn-copy" class="btn-secondary">
+          📋 Copy to Clipboard
+        </button>
+        <button id="btn-regenerate" class="btn-secondary">
+          🔄 Regenerate
+        </button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="https://static.zdassets.com/zendesk_app_framework_sdk/2.0/zaf_sdk.min.js"></script>
+  <script src="main.js"></script>
+</body>
+</html>
